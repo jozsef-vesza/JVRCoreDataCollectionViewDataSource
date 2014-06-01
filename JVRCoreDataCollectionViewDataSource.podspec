@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.public_header_files = "*.h"
   s.framework  = "CoreData"
   s.requires_arc = true
-  s.dependency "JVRCoreDataCellHelper"
+  s.dependency 'JVRCoreDataCellHelper'
 end
