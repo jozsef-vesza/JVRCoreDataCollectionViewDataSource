@@ -8,7 +8,7 @@
 
 #import "JVRCoreDataCollectionViewDataSource.h"
 #import "JVRCellConfiguratorDelegate.h"
-#import "JVRCoreDataHelperDelegate"
+#import "JVRCoreDataHelperDelegate.h"
 
 @interface JVRCoreDataCollectionViewDataSource ()
 
