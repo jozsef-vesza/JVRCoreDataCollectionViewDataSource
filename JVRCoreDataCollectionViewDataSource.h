@@ -10,9 +10,14 @@
 #import <CoreData/NSFetchedResultsController.h>
 
 /**
- *  Helper delegate implemented by the class responsible for collection view cell configuration and handling of item deletion
+ *  Helper delegate implemented by the class responsible for collection view cell configuration
  */
-@protocol JVRCoreDataCellHelper;
+@protocol JVRCellConfiguratorDelegate;
+
+/**
+ *  Helper delegate implemented by the class responsible for core data operations, like item deletion
+ */
+@protocol JVRCoreDataHelperDelegate;
 
 /**
  *  JVRCoreDataCollectionViewDataSource iss meant to be used by UICollectionViewController classes as data source and by NSFetchedResultsController as delegate
@@ -27,13 +32,14 @@
 /**
  *  Convenience initializer
  *
- *  @param collectionView The collection view which will use this instance as data source
- *  @param controller     The fetched results controller which will use this instance as delegate
- *  @param delegate       The helper delegate instance for customizing cells and handling item deletion
+ *  @param collectionView   The collection view which will use this instance as data source
+ *  @param controller       The fetched results controller which will use this instance as delegate
+ *  @param cellConfigurator The helper delegate instance for customizing cells
+ *  @param delegate         The helper delegate instance for core data operations (e.g.: deletion)
  *
  *  @return An initialized instance of JVRCoreDataCollectionViewDataSource
  */
-+ (instancetype)dataSourceForCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)controller usingDelegate:(id <JVRCoreDataCellHelper>)delegate;
++ (instancetype)dataSourceForCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)controller withCellConfigurator:(id <JVRCellConfiguratorDelegate>)cellConfigurator withDelegate:(id <JVRCoreDataHelperDelegate>)delegate;
 
 /**
  *  The object at the current index path
