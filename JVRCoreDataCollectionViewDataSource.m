@@ -8,14 +8,12 @@
 
 #import "JVRCoreDataCollectionViewDataSource.h"
 #import "JVRCellConfiguratorDelegate.h"
-#import "JVRCoreDataHelperDelegate.h"
 
 @interface JVRCoreDataCollectionViewDataSource ()
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) id<JVRCellConfiguratorDelegate> cellConfigurator;
-@property (nonatomic, strong) id<JVRCoreDataHelperDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *objectChanges;
 @property (nonatomic, strong) NSMutableArray *sectionChanges;
 
@@ -23,11 +21,11 @@
 
 @implementation JVRCoreDataCollectionViewDataSource
 
-+ (instancetype)dataSourceForCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)controller withCellConfigurator:(id <JVRCellConfiguratorDelegate>)cellConfigurator withDelegate:(id <JVRCoreDataHelperDelegate>)delegate {
-    return [[self alloc] initWithCollectionView:collectionView withFetchedResultsController:controller withCellConfigurator:cellConfigurator withDelegate:delegate];
++ (instancetype)dataSourceForCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)controller withCellConfigurator:(id <JVRCellConfiguratorDelegate>)cellConfigurator {
+    return [[self alloc] initWithCollectionView:collectionView withFetchedResultsController:controller withCellConfigurator:cellConfigurator];
 }
 
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController withCellConfigurator:(id <JVRCellConfiguratorDelegate>)cellConfigurator withDelegate:(id <JVRCoreDataHelperDelegate>)delegate {
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController withCellConfigurator:(id <JVRCellConfiguratorDelegate>)cellConfigurator {
     self = [super init];
     if (self) {
         _collectionView = collectionView;
@@ -35,7 +33,6 @@
         _fetchedResultsController = fetchedResultsController;
         _fetchedResultsController.delegate = self;
         _cellConfigurator = cellConfigurator;
-        _delegate = delegate;
         NSError *error;
         [_fetchedResultsController performFetch:&error];
     }
@@ -76,9 +73,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     id objectAtIndex = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *reuseIdentifierForCell = [self.cellConfigurator fetchReuseIdentifierForObject:objectAtIndex];
+    NSString *reuseIdentifierForCell = [self.cellConfigurator fetchReuseIdentifierforObject:objectAtIndex];
     id cellAtIndex = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifierForCell forIndexPath:indexPath];
-    cellAtIndex = [self.cellConfigurator configureCell:cellAtIndex withObject:objectAtIndex];
+    cellAtIndex = [self.cellConfigurator configureCell:cellAtIndex usingObject:objectAtIndex];
     
     return cellAtIndex;
 }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
  s.name         = "JVRCoreDataCollectionViewDataSource"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "A reusable class that combines UICollectionViewDataSource and NSFetchedResultsControllerDelegate."
   s.homepage     = "https://github.com/jozsef-vesza/JVRCoreDataCollectionViewDataSource"
   s.license      = "MIT"
@@ -13,5 +13,4 @@ Pod::Spec.new do |s|
   s.framework  = "CoreData"
   s.requires_arc = true
   s.dependency 'JVRCellConfiguratorDelegate'
-  s.dependency 'JVRCoreDataHelperDelegate'
 end

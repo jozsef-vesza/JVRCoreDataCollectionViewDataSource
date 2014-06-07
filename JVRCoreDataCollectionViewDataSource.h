@@ -15,11 +15,6 @@
 @protocol JVRCellConfiguratorDelegate;
 
 /**
- *  Helper delegate implemented by the class responsible for core data operations, like item deletion
- */
-@protocol JVRCoreDataHelperDelegate;
-
-/**
  *  JVRCoreDataCollectionViewDataSource iss meant to be used by UICollectionViewController classes as data source and by NSFetchedResultsController as delegate
  */
 @interface JVRCoreDataCollectionViewDataSource : NSObject <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
@@ -39,7 +34,7 @@
  *
  *  @return An initialized instance of JVRCoreDataCollectionViewDataSource
  */
-+ (instancetype)dataSourceForCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)controller withCellConfigurator:(id <JVRCellConfiguratorDelegate>)cellConfigurator withDelegate:(id <JVRCoreDataHelperDelegate>)delegate;
++ (instancetype)dataSourceForCollectionView:(UICollectionView *)collectionView withFetchedResultsController:(NSFetchedResultsController *)controller withCellConfigurator:(id <JVRCellConfiguratorDelegate>)cellConfigurator;
 
 /**
  *  The object at the current index path
