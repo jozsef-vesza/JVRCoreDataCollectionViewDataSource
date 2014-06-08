@@ -16,7 +16,9 @@ Using `JVRCoreDataCollectionViewDataSource` is really simple, you only need a fe
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataSource = [JVRCoreDataCollectionViewDataSource dataSourceForCollectionView:self.collectionView withFetchedResultsController:self.fetchedResultsController withCellConfigurator:[[MyCellConfigurator alloc] init]];
+    self.dataSource = [JVRCoreDataCollectionViewDataSource dataSourceForCollectionView:self.collectionView 
+                                                          withFetchedResultsController:self.fetchedResultsController
+                                                                  withCellConfigurator:[[MyCellConfigurator alloc] init]];
     }
     
 @end
