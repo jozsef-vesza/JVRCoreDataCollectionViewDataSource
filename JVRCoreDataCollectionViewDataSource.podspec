@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
  s.name         = "JVRCoreDataCollectionViewDataSource"
-  s.version      = "1.0.3"
+  s.version      = "1.0.4"
   s.summary      = "A reusable class that combines UICollectionViewDataSource and NSFetchedResultsControllerDelegate."
   s.homepage     = "https://github.com/jozsef-vesza/JVRCoreDataCollectionViewDataSource"
   s.license      = "MIT"

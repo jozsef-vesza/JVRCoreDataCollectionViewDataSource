@@ -127,17 +127,16 @@
             [strongSelf.sectionChanges enumerateObjectsUsingBlock:^(NSDictionary *change, NSUInteger idx, BOOL *stop) {
                 [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
                     NSFetchedResultsChangeType type = [key unsignedIntegerValue];
-                    switch (type) {
+                    switch (type)
+                    {
                         case NSFetchedResultsChangeInsert:
-                            [strongSelf.collectionView insertItemsAtIndexPaths:@[obj]];
+                            [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
                             break;
                         case NSFetchedResultsChangeDelete:
-                            [strongSelf.collectionView deleteItemsAtIndexPaths:@[obj]];
-                        case NSFetchedResultsChangeUpdate:
-                            [strongSelf.collectionView reloadItemsAtIndexPaths:@[obj]];
+                            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
                             break;
-                        case NSFetchedResultsChangeMove:
-                            [strongSelf.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
+                        case NSFetchedResultsChangeUpdate:
+                            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
                             break;
                     }
                 }];
